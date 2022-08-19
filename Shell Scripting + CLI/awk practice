@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+payroll_file=$1
+
+###########################################################
+# Phase 1
+###########################################################
+    # phase 1: take csv file and extract the useful columns:
+    # first_name,last_name,gross_income(sum of earned wages and bonuses),total_withholding
+    # $3, $4, $8+11, $10 <- column #'s'
+
+awk_code='{print $3","$4","$8+$11","$10}' # awk command here
+field_seperator_1=',' # What should the feel seperator be?
+awk -F "$field_seperator_1" "$awk_code" "$payroll_file" > w2_info
+
+###########################################################
+# Phase 2
+###########################################################
+    # find: avg earnings, average witholding, lowest and highest earnings
+    # in w2_info: # first_name,last_name,gross_income(sum of earned wages and bonuses),total_withholding
+    # $1,$2,$3,$4
+
+field_seperator_2=',' # What should this field seperator be? 
+awk -F "$field_seperator_2" -f data_aggregator.awk < w2_info > agg_data
