@@ -1,0 +1,11 @@
+Section 1:
+AWS Regions (cluster of data centers).
+Most AWS services are region-scoped (if we use service in one region, and then try using it in another region, it’ll be like a new time of using the service)
+How to choose aws region? Depends on:
+Compliance with data governance, legal requirements
+Proximity to customers - reduce lag / latency
+Available services within a region 
+Pricing varies region to region
+AWS Availability Zones (AZ) - each region has multiple AZ’s. Each AZ is one or more discrete data centers with redundant power, networking, and connectivity. AZ separate from eachother, isolated from disasters
+ 
+Section 2: IAM -  Identity and Access Management, Global Service (Users & Groups)
