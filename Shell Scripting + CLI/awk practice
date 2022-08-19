@@ -22,3 +22,39 @@ awk -F "$field_seperator_1" "$awk_code" "$payroll_file" > w2_info
 
 field_seperator_2=',' # What should this field seperator be? 
 awk -F "$field_seperator_2" -f data_aggregator.awk < w2_info > agg_data
+
+############################################################
+# data_aggregator.awk
+
+
+BEGIN{
+    FS = ","
+    minEarnings = 1000000
+    maxEarnings = 0
+    totalEarnings = 0
+    avgEarnings = 0
+    totalWitholdings = 0
+    avgWithholding = 0
+}
+
+
+function computations() {
+    totalEarnings += $3      
+    if ($3 > maxEarnings) {maxEarnings = $3} 
+    if ($3 < minEarnings) {minEarnings = $3}
+    avgEarnings = (totalEarnings / (NR - 1))
+
+    totalWitholdings += $4
+    avgWithholding = (totalWitholdings / (NR - 1))
+}
+
+NR > 1 {
+    computations()
+}
+
+END {
+    print "Average earnings: " avgEarnings
+    print "Average withholding: " avgWithholding
+    print "Lowest earnings " minEarnings
+    print "Highest earnings " maxEarnings
+}
