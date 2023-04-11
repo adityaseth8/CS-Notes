@@ -1,0 +1,66 @@
+Fully managed serverless ETL Service
+
+Scripts can be scheduled to move data from point a to point b
+
+
+
+Temp-dir folder
+Stores Temporary files that glue actually creates. Supplied as parameter in runtime
+
+Scripts
+
+
+An artifact is a byproduct of software development that helps describe the architecture, design and function of software. Artifacts are like roadmaps that software developers can use to trace the entire software development process. Artifacts might be databases, data models, printed documents or scripts.
+
+
+AWS Glue Data Catalog
+Persistent metadata store
+Managed service that lets you store, annotate, and share metadata which can be used to query and transform data
+1 aws glue data catalog per AWS region
+Can be used for data governance (setting internal standards—data policies—that apply to how data is gathered, stored, processed, and disposed of. It governs who can access what kinds of data and what kinds of data are under governance.)
+
+What is metadata
+Data location, schema, data types, data classification
+a set of data that describes and gives information about other data.
+AWS Glue
+Scheme registries: used for streaming data
+
+AWS Glue Databases
+Set of associated Data Catalog table definitions organized into a logical group. 
+Name we give a database that we place datatables in.
+Datatables all reside in original places. 
+Database is j a place where we logically group tables
+
+Create folder as your database (fake-student-enrollment-database), and then place tables under that (bis2b_W23 folder)
+bis2b_W23 will become a table in the glue catalog. Within the bis2b_W23 (datatable) folder, we have partitioned by dataload (physical partition). 
+
+
+AWS Glue Tables
+Metadata definition that represents you data. Data resides in its original store. This is j a representation of the data and schema form
+. Only bringing shema information across to the glue data catalog.
+
+Concepts
+Partitions in Aws
+Folders where data is stores on s3. Physical entities mapped to logical entities (partitions). Ex columns in the glue table.
+Laymen terms: partitions are j folders in s3 that help us query data more efficiently.
+
+AWS Glue Connections
+Data catalog object that contains proper
+Connection strings with usernames and password saved so that u can j refer to __
+
+AWS GLue job: business logic required to perform ETL work. Composed of transformation script, data sources, and data targets. Job runs initiated by scheduled triggers or triggered by events. (costs money :( )\
+
+AWS Glue Triggers: initiate ETL job based on scheduled triggers or event (i.e job1 successfully completed triggers job2)
+
+AWS Glue Dev Endpoint - Environment to develop and test AWS Glue Scripts. Very expensive (~ $50 per day)
+
+
+AWS Console:
+Set up and store data in s3 bucket with a partition (using upload date at 
+Create a table in the AWS Glue Catalog to stores metadata of fakedata in s3) by using a crawler (which will go through the specified s3 bucket)
+Go to athena, create a query result location in s3 bucket
+
+Sales table, partitioned / put data in 3 separate folders below (year, month, date).
+Easy to query: ex: write query where we wanted from data where year=2019, month=Feb, day=1. Would only look through the 2 files under day=1.
+AWS Glue Crawlers - program that connects to a data store (source or target) and determines the scheme of your data, and then creates metadata tables in the AWS Glue Data Catalog. 
+Saves us from manually entering table scheme in the AWS Glue Catalog
