@@ -1,1 +1,2 @@
-Lambda Layers: used to package libraries and other dependencies needed for lambda function. Can pip install packages using cloudshell, remove unecessary files, feed zipped folder to s3 bucket. Give s3 bucket URL to lambda layer, link with lambda function
+Lambda Layers: used to package libraries and other dependencies needed for lambda function. Can pip install packages using cloudshell, 
+remove unecessary files, feed zipped folder to s3 bucket. Give s3 bucket URL to lambda layer, link with lambda function
