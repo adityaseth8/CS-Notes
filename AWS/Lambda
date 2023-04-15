@@ -1,2 +1,12 @@
 Lambda Layers: used to package libraries and other dependencies needed for lambda function. Can pip install packages using cloudshell, 
 remove unecessary files, feed zipped folder to s3 bucket. Give s3 bucket URL to lambda layer, link with lambda function
+
+Paramters for handler funcion:
+  1. event: data passed to function as input ()
+  2. context: info about runtime environment of function 
+  
+Schedule function:
+  1. Eventbridge (Cloudwatch Events) - can schedule regular interval runs using cron job.
+  2. S3 trigger - Watches s3 bucket status
+  
+
